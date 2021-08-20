@@ -1,18 +1,22 @@
 version: "3.3"
 services:
-  node1:
-    image: niki/ubuntu
+  ubuntu1:
+    build: .
     ports:
       - "80:80"
-  node2:
-    image: niki/ubuntu
+  ubuntu2:
+    build: .
     ports: 
-      - "5000:5000"
-  node3:
-    image: niki/ubuntu
+      - "3306:3306"
+  ubuntu3:
+    build: .
   ansible:
-    image: niki/ansible
+    build: 
+     context: .
+     dockerfile: Dockerfile.ansible
   centos:
-    image: niki/centos
+    build: 
+     context: .
+     dockerfile: Dockerfile.centos
     
 
