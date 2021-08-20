@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  node1:
+    image: niki/ubuntu
+    ports:
+      - "80:80"
+  node2:
+    image: niki/ubuntu
+    ports: 
+      - "5000:5000"
+  node3:
+    image: niki/ubuntu
+  ansible:
+    image: niki/ansible
+  centos:
+    image: niki/centos
+    
+

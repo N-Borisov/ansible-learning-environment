@@ -1,0 +1,17 @@
+FROM ubuntu
+
+RUN export TZ=Europe/Paris && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN apt-get update && apt-get install -qq openssh-server iputils-ping vim python3 python3-pip curl && \
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py && \
+    pip3 install cryptography && \
+    pip3 install ansible
+
+RUN echo "root:1234" |chpasswd 
+
+RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config && ssh-keygen -A
+
+RUN service ssh start
+
+CMD ["/usr/sbin/sshd","-D"]`
+
